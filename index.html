@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lunar Lander</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.25">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <h1>Lunar Lander</h1>
+
+    <div id="container">
+        <div id="playingArea">
+            <canvas id="canvas" width="1000" height="430"></canvas>
+            <img id="lander" src="lander.png">
+            <img id="fire" src="fire.png">
+            <div id="gameOverMessage"></div>
+        </div>
+
+        <div id="instructions-fuel">
+            <p id="instructions">
+                Use the left/right arrows to rotate, and the up arrow to thrust.
+            </p>
+
+            <p id="fuel">
+                Fuel: <span id="fuelValue">100</span>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
