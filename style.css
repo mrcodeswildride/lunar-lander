@@ -1,0 +1,44 @@
+body {
+  background-color: beige;
+}
+
+#playingArea,
+#statusBar {
+  width: 1000px;
+}
+
+#playingArea {
+  height: 430px;
+  background-image: url("sky.jpg");
+  position: relative;
+  overflow: hidden;
+}
+
+#playingArea > img {
+  display: none;
+  position: absolute;
+}
+
+#playMessage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  line-height: 400px;
+}
+
+#statusBar {
+  font-size: 24px;
+  overflow: auto;
+}
+
+#instructions {
+  float: left;
+}
+
+#fuelParagraph {
+  float: right;
+}
