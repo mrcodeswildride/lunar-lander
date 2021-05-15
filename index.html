@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Lunar Lander</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.35" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
 
-<head>
-	<title>Lunar Lander</title>
-	<meta name="viewport" content="width=device-width, initial-scale=0.25">
-	<link href="style.css" rel="stylesheet">
-	<script src="script.js" defer>
+  <body>
+    <h1>Lunar Lander</h1>
 
-	</script>
-</head>
+    <div id="playingArea">
+      <canvas width="1000" height="430" id="canvas"></canvas>
+      <img src="lander.png" id="lander" />
+      <img src="fire.png" id="fire" />
+      <div id="playMessage">Press enter to play</div>
+    </div>
 
-<body>
-	<h1>Lunar Lander</h1>
-
-	<div id="playingArea">
-		<canvas width="1000" height="430" id="canvas"></canvas>
-		<img src="lander.png" id="lander">
-    <img src="fire.png" id="fire">
-    <div id="playMessage">Press enter to play</div>
-  </div>
-
-  <div id="statusBar">
-    <p id="instructions">
-      Use left/right arrows to rotate, and up arrow to thrust.
-    </p>
-
-    <p id="fuelParagraph">
-      Fuel: <span id="fuelValue">100</span>
-    </p>
-  </div>
-</body>
-
+    <div id="statusBar">
+      <p id="instructions">Use left/right arrows to rotate, and up arrow to thrust.</p>
+      <p id="fuelParagraph">Fuel: <span id="fuelValue">100</span></p>
+    </div>
+  </body>
 </html>

@@ -7,10 +7,10 @@ let fuelValue = document.getElementById(`fuelValue`)
 
 let gravity = 0.05
 let gameStarted = false
-let thrusting = false
-let hSpeed = 0
-let vSpeed = 1
-let rotation = 0
+let thrusting
+let hSpeed
+let vSpeed
+let rotation
 let fuel = 100
 let intervalId
 
@@ -24,17 +24,14 @@ function keyDown(event) {
     if (event.keyCode == 13) {
       startGame()
     }
-  }
-  else {
+  } else {
     if (event.keyCode == 37) {
       rotation -= 15
       lander.style.transform = `rotate(${rotation}deg)`
-    }
-    else if (event.keyCode == 39) {
+    } else if (event.keyCode == 39) {
       rotation += 15
       lander.style.transform = `rotate(${rotation}deg)`
-    }
-    else if (event.keyCode == 38 && fuel > 0) {
+    } else if (event.keyCode == 38 && fuel > 0) {
       thrusting = true
     }
   }
@@ -85,8 +82,7 @@ function generateTerrain() {
   for (let i = 0; i <= canvas.width / 10; i++) {
     if (i >= flatSurfaceX && i <= flatSurfaceX + 10) {
       context.lineTo(i * 10, flatSurfaceY)
-    }
-    else {
+    } else {
       context.lineTo(i * 10, canvas.height - (Math.random() * 120 + 30))
     }
   }
@@ -108,8 +104,7 @@ function gameLoop() {
 
   if (thrusting) {
     thrust()
-  }
-  else {
+  } else {
     fire.style.display = `none`
   }
 
@@ -133,10 +128,18 @@ function thrust() {
 }
 
 function checkLanded() {
-  let landerPixels = context.getImageData(lander.offsetLeft, lander.offsetTop, lander.width, lander.height).data
+  let landerPixels = context.getImageData(
+    lander.offsetLeft,
+    lander.offsetTop,
+    lander.width,
+    lander.height
+  ).data
 
   for (let i = 0; i < landerPixels.length; i += 4) {
-    if ((landerPixels[i] == 128 && landerPixels[i + 1] == 128 && landerPixels[i + 2] == 128) || lander.offsetTop >= canvas.height - lander.height) {
+    if (
+      (landerPixels[i] == 128 && landerPixels[i + 1] == 128 && landerPixels[i + 2] == 128) ||
+      lander.offsetTop >= canvas.height - lander.height
+    ) {
       fire.style.display = `none`
       gameStarted = false
       thrusting = false
@@ -152,12 +155,10 @@ function showGameOverMessage() {
   if (rotation == 0 && onFlatSurface()) {
     if (vSpeed < 4) {
       playMessage.innerHTML = `Good job! Press enter to play again.`
-    }
-    else {
+    } else {
       playMessage.innerHTML = `You landed too fast. Press enter to play again.`
     }
-  }
-  else {
+  } else {
     playMessage.innerHTML = `You crashed. Press enter to play again.`
   }
 
@@ -165,10 +166,19 @@ function showGameOverMessage() {
 }
 
 function onFlatSurface() {
-  let landerBottomRowPixels = context.getImageData(lander.offsetLeft, lander.offsetTop + lander.height - 1, lander.width, 1).data
+  let landerBottomRowPixels = context.getImageData(
+    lander.offsetLeft,
+    lander.offsetTop + lander.height - 1,
+    lander.width,
+    1
+  ).data
 
   for (let i = 0; i < landerBottomRowPixels.length; i += 4) {
-    if (landerBottomRowPixels[i] != 128 && landerBottomRowPixels[i + 1] != 128 && landerBottomRowPixels[i + 2] != 128) {
+    if (
+      landerBottomRowPixels[i] != 128 &&
+      landerBottomRowPixels[i + 1] != 128 &&
+      landerBottomRowPixels[i + 2] != 128
+    ) {
       return false
     }
   }
